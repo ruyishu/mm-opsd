@@ -1,0 +1,12 @@
+extends: l20.yaml
+train:
+  output_dir: runs/smoke
+  max_steps: 2
+  max_train_samples: 8
+  gradient_accumulation_steps: 4
+  max_completion_length: 32
+  save_steps: 1
+  validation_samples: 4
+  validation_max_new_tokens: 64
+eval:
+  max_new_tokens: 64

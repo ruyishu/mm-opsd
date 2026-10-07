@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mm-opsd"
+version = "0.1.0"
+description = "Single-GPU answer-conditioned on-policy self-distillation for Qwen3-VL"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+dependencies = [
+  "torch==2.8.0", "torchvision==0.23.0",
+  "transformers==4.57.1", "peft==0.17.1", "accelerate==1.11.0",
+  "datasets==3.6.0", "Pillow==11.3.0", "PyYAML==6.0.2",
+  "math-verify==0.8.0", "safetensors==0.5.3", "numpy==1.26.4",
+  "huggingface-hub==0.36.0", "tqdm==4.67.1",
+  "trl==0.26.0", "qwen-vl-utils==0.0.14", "wandb==0.22.3",
+]
+
+[project.optional-dependencies]
+test = ["pytest==8.4.2"]
+
+[project.scripts]
+mmopsd-prepare = "mm_opsd.prepare:main"
+mmopsd-train = "mm_opsd.train:main"
+mmopsd-eval = "mm_opsd.evaluate:main"
+mmopsd-check = "mm_opsd.doctor:main"
+mmopsd-report = "mm_opsd.report:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"

@@ -1,0 +1,9 @@
+name: mm-opsd
+channels:
+  - conda-forge
+dependencies:
+  - python=3.10.16
+  - pip=25.2
+  - pip:
+      - -r requirements.txt
+      - -e .

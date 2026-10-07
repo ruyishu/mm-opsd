@@ -1,0 +1,37 @@
+model:
+  name: Qwen/Qwen3-VL-2B-Instruct
+  revision: 89644892e4d85e24eaac8bacfd4f463576704203
+  attention: sdpa
+  max_pixels: 262144
+  min_pixels: 4096
+  lora_rank: 16
+  lora_alpha: 32
+data:
+  root: data/processed
+train:
+  method: opsd
+  output_dir: runs/mm-opsd
+  seed: 42
+  epochs: 1
+  max_steps: null
+  max_train_samples: null
+  batch_size: 1
+  gradient_accumulation_steps: 16
+  gradient_checkpointing: true
+  learning_rate: 5.0e-6
+  max_grad_norm: 0.1
+  warmup_ratio: 0.03
+  max_sequence_length: 2048
+  max_completion_length: 512
+  temperature: 1.1
+  top_p: 0.95
+  top_k: 20
+  token_clip: 0.05
+  loss_chunk_size: 32
+  save_steps: 25
+  validation_samples: 64
+  validation_max_new_tokens: 512
+eval:
+  max_sequence_length: 4096
+  max_new_tokens: 1024
+  bootstrap_samples: 1000
